@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Fortnite - EWC Reload</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: #f2f2f2;
+}
+
+header {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    background-color: #333;
+    padding: 10px;
+    margin: 0;
+}
+
+menu li {
+    margin: 0 15px;
+    color: white;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+form {
+    margin-top: 10px;
+}
+
+input {
+    padding: 5px;
+}
+
+button {
+    padding: 6px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border: 6px double #444; 
+}
+
+th, td {
+    border: 2px solid #555;      
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    border: 3px outset #888;     
+    background-color: #444;
+    color: white;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    border: 4px groove #666;     
+}
+
+
+footer {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>EWC Reload</h1>
+</header>
+
+<menu>
+    <li>Peterbot e Pollo</li>
+    <li>Gon e Night</li>
+    <li>Shxrk e T3eny</li>
+    <li>Rapid e Cold</li>
+    <li>Sky e Scroll</li>
+</menu>
+
+<main>
+
+<p>Em 2026 junto com a Esports World Cup, Fortnite traz a modalidade Reload como a LAN de meio de ano.</p>
+
+<h2>Quem vocês acham que deve qualificar na segunda qualificatória?</h2>
+
+<form action="/enviar-dados" method="post">
+    <label>Jogadores:</label>
+    <input type="text" name="nome" required>
+    <button type="submit">Enviar</button>
+</form>
+
+<h2>Principais nomes</h2>
+
+<table>
+    <tr>
+        <th>Organização</th>
+        <th>Nomes</th>
+        <th>País</th>
+        <th>Foto</th>
+    </tr>
+    <tr>
+        <td>Vitality</td>
+        <td>Queasy</td>
+        <td>Sérvia</td>
+        <td><img src="queasy.png"></td>
+    </tr>
+    <tr>
+        <td>Gentle Mates (M8)</td>
+        <td>Merstach</td>
+        <td>Ucrânia</td>
+        <td><img src="merstach.jpg"></td>
+    </tr>
+</table>
+
+</main>
+
+<footer>
+    João Fuzetti
+</footer>
+
+</body>
+</html>
