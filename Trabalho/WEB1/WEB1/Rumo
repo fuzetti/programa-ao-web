@@ -1,0 +1,61 @@
+1. Definição do Problema (O Domínio)
+Problema: Controle de agendamentos ou cadastro de Pets para um Pet Shop.
+CRUDL: Vamos fazer o CRUDL de Pets (Nome do pet, Espécie, Nome do Dono e Telefone).
+
+2. Estrutura de Pastas
+Organize assim para facilitar o "CSS Externo" e o "JS Puro":
+
+projeto-petshop/
+
+index.html (Página do CRUDL)
+
+login.html (Página de Login)
+
+css/style.css
+
+js/script.js
+
+img/logo.png
+
+3. Passo a Passo do Desenvolvimento
+A. Comece pelo HTML Semântico (A Base)
+Siga exatamente a hierarquia que aprendemos. No seu index.html:
+
+<header>: Logo à esquerda (com link), Título no meio, Perfil do usuário (simbólico) à direita.
+
+<nav>: Lista <ul> com os menus e submenus.
+
+<main>: Aqui você coloca o formulário de cadastro (Insert/Update) e a tabela (List/Delete).
+
+<footer>: Nome da equipe.
+
+B. CSS Externo e Responsividade
+No seu style.css, use Flexbox ou Grid para os alinhamentos.
+
+Para ser responsivo, use porcentagens (width: 100%) e Media Queries (ex: @media (max-width: 600px) para empilhar o menu no celular).
+
+Use classes como .btn-salvar, .tabela-pets, .container.
+
+C. Javascript Puro (A Lógica)
+Para o CRUDL funcionar sem banco de dados (já que é uma POC), você pode usar um Array de Objetos no JS.
+
+Create: array.push(novoPet) e depois atualiza a tabela.
+
+Read/List: Um loop forEach que cria linhas <tr> na tabela.
+
+Delete: Use o índice do array para remover e redesenhar a tabela.
+
+4. Ideia de Layout para o CRUDL
+Parte        /  O que colocar
+Cabeçalho    /  Logo do Pet Shop + Título "Sistema de Gestão" + Foto do "Admin".
+Formulário   /	Inputs para: Nome do Pet, Raça e Dono. Botões "Salvar" e "Limpar".
+Tabela	     / Colunas: Nome, Raça, Dono, Ações (Editar/Excluir).
+
+
+5. Dica de Ouro: Acessibilidade
+
+Não esqueça dos atributos aria. Por exemplo:
+
+Nos inputs: <input type="text" aria-label="Nome do Pet" required>
+
+Nas imagens: <img src="logo.png" alt="Logotipo do Pet Shop">
