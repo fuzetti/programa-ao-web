@@ -15,6 +15,8 @@ header {
     justify-content: space-between;
     padding: 10px 0;
 }
+
+/*-----------NAV-----------*/
 nav ul {
     list-style: none;
     display: flex;
@@ -24,11 +26,28 @@ nav a {
     text-decoration: none;
     color: #333;
 }
-footer {
-    text-align: center;
-    margin-top: 30px;
+
+/*-----------footer----------*/
+
+.footer-cabecalho{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center; 
+    align-items: center;     
+    
+    width: 100%;                
+    padding: 20px 0;
 }
-/* login page */
+.footer-coluna{
+    background-color: rgb(89, 172, 200);
+    padding: 10px;
+    border-radius: 8px;    
+    min-width: 150px;      
+    text-align: center;
+}
+
+/*-----------login------------*/
 .login-container {
     max-width: 400px;
     margin: 100px auto;
@@ -48,9 +67,9 @@ footer {
     border: none;
     cursor: pointer;
 }
-body {
+/*body {
     margin: 0;
-  }
+  } */
   
   ul {
     list-style-type: none;
