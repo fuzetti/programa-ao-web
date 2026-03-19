@@ -32,19 +32,21 @@ nav a {
 .footer-cabecalho{
     display: flex;
     flex-direction: row;
-    gap: 20px;
     justify-content: center; 
-    align-items: center;     
-    
+    align-items: stretch;     
     width: 100%;                
-    padding: 20px 0;
+    padding: 30px 5%;
+    background-color: #c3f2f4;
+    border-top: 1px solid #000000;
 }
 .footer-coluna{
-    background-color: rgb(89, 172, 200);
-    padding: 10px;
-    border-radius: 8px;    
-    min-width: 150px;      
+    flex: 1; 
+    padding: 20px;
     text-align: center;
+    transition: background 0.3s;
+}
+.footer-coluna:not(:first-child) {
+    border-left: 1px solid #070707;
 }
 
 /*-----------login------------*/
