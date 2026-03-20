@@ -37,7 +37,7 @@ nav a {
     width: 100%;                
     padding: 30px 5%;
     background-color: #c3f2f4;
-    border-top: 1px solid #000000;
+    border-top: 3px solid #000000;
 }
 .footer-coluna{
     flex: 1; 
@@ -73,30 +73,30 @@ nav a {
     margin: 0;
   } */
   
-  ul {
+  .aoi {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .aoi h2, p {
+    margin: 10px;
+  }
+  
+  .aoi ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 130px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
+    background-color: #333333;
+    display: flex;
   }
   
-  li a {
+  .aoi ul li a {
     display: block;
-    color: black;
-    padding: 8px 16px;
+    color: white;
+    padding: 14px 16px;
     text-decoration: none;
   }
   
-  li a.active {
-    background-color: #04AA6D;
-    color: white;
-  }
-  
-  li a:hover:not(.active) {
-    background-color: #555555;
-    color: white;
+  .aoi ul li a:hover {
+    background-color: #111111;
   }
