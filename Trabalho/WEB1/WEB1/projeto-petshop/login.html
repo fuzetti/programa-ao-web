@@ -3,19 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - PetShop</title>
+    <title>Login - Natura PetShop</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <main class="login-container">
-        <h2>Login</h2>
-        <form>
+        <h2>Área Restrita</h2>
+        <form id="form-login">
             <label for="user">Usuário:</label>
-            <input type="text" id="user" aria-label="Usuário" required>
+            <input type="text" id="user" required>
+            
             <label for="pass">Senha:</label>
-            <input type="password" id="pass" aria-label="Senha" required>
-            <button type="submit">Entrar</button>
+            <input type="password" id="pass" required>
+            
+            <button type="submit" class="btn btn-salvar">Entrar</button>
         </form>
+        
+        <p style="text-align:center; margin-top:15px;">
+            Não tem conta? <a href="cadastro.html">Cadastre-se aqui</a>
+        </p>
+        <a href="index.html" class="btn btn-voltar" style="display:block; text-align:center; background:#ccc; color:#333; margin-top:10px; text-decoration:none;">Voltar</a>
     </main>
+
+    <script>
+        document.getElementById('form-login').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const usuarioDigitado = document.getElementById('user').value;
+            const senhaDigitada = document.getElementById('pass').value;
+
+            // Puxa os dados temporários da sessão atual
+            const usuarioSalvo = sessionStorage.getItem('petshop_user');
+            const senhaSalva = sessionStorage.getItem('petshop_pass');
+            
+            if (!usuarioSalvo) {
+                alert('Erro: Nenhum usuário cadastrado neste navegador!');
+                return;
+            }
+
+            if (usuarioDigitado === usuarioSalvo && senhaDigitada === senhaSalva) {
+                alert('Login realizado com sucesso!');
+                window.location.href = 'index.html'; 
+            } else {
+                alert('Usuário ou senha incorretos!');
+            }
+        });
+    </script>
 </body>
 </html>
