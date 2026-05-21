@@ -29,16 +29,19 @@
             document.getElementById('rodape').innerHTML = data;
         });
 
-        fetch('nav.html')
+    fetch('nav.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('nav').innerHTML = data;
         });
 
-        fetch('article.html')
+    fetch('article.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('article').innerHTML = data;
+            // Carregar pets APÓS a tabela ser renderizada
+            carregarPets();
+            atualizarTabela();
         });
 
 </script>
