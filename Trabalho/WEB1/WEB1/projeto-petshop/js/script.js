@@ -1,6 +1,19 @@
-// js/script.js
+
 let pets = [];
 let editIndex = null;
+
+// Função para salvar no localStorage
+function salvarPets() {
+    localStorage.setItem('petshop_pets', JSON.stringify(pets));
+}
+
+// Função para carregar do localStorage
+function carregarPets() {
+    const dados = localStorage.getItem('petshop_pets');
+    if (dados) {
+        pets = JSON.parse(dados);
+    }
+}
 
 // Função para renderizar a tabela
 window.atualizarTabela = function() {
@@ -45,6 +58,7 @@ document.addEventListener('submit', function(e) {
 
         e.target.reset(); // Limpa os campos
         atualizarTabela();
+        salvarPets(); // Salva no localStorage
     }
 });
 
@@ -52,6 +66,7 @@ document.addEventListener('submit', function(e) {
 window.excluirPet = function(index) {
     if (confirm("Deseja realmente excluir este pet?")) {
         pets.splice(index, 1);
+        salvarPets(); // Salva no localStorage
         atualizarTabela();
     }
 };
