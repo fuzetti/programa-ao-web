@@ -1,4 +1,4 @@
-
+// js/script.js
 let pets = [];
 let editIndex = null;
 
@@ -18,16 +18,17 @@ function carregarPets() {
 // Função para renderizar a tabela
 window.atualizarTabela = function() {
     const tabelaBody = document.querySelector('.tabela-pets');
-    if (!tabelaBody) return; // Se a tabela ainda não existir, pausa.
-    
+    if (!tabelaBody) return;
     tabelaBody.innerHTML = '';
-    
     pets.forEach((pet, index) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${pet.nome}</td>
             <td>${pet.especie}</td>
             <td>${pet.dono}</td>
+            <td>${pet.idade}</td>
+            <td>${pet.porte}</td>
+            <td>${pet.vacinado ? 'Sim' : 'Não'}</td>
             <td>
                 <button class="btn btn-editar" onclick="prepararEdicao(${index})">Editar</button>
                 <button class="btn btn-deletar" onclick="excluirPet(${index})">Excluir</button>
@@ -40,33 +41,64 @@ window.atualizarTabela = function() {
 // CREATE / UPDATE - Capturando o formulário que vem do article.html
 document.addEventListener('submit', function(e) {
     if (e.target && e.target.id === 'form-pet') {
-        e.preventDefault(); // Impede a página de recarregar
-        
-        const pet = {
-            nome: document.getElementById('nomePet').value,
-            especie: document.getElementById('especiePet').value,
-            dono: document.getElementById('donoPet').value
-        };
+        e.preventDefault();
+        document.querySelectorAll('.erro-campo').forEach(el => el.remove());
+
+        // Captura campos
+        const nome = document.getElementById('nomePet').value.trim();
+        const especie = document.getElementById('especiePet').value;
+        const dono = document.getElementById('donoPet').value.trim();
+        const idade = document.getElementById('idadePet').value;
+        const porte = document.getElementById('portePet').value;
+        const vacinado = document.getElementById('vacinadoPet').checked;
+
+        let valido = true;
+
+        // [VALIDAÇÃO 1] Nome obrigatório
+        if (!nome) {
+            mostrarErro('nomePet', 'O nome é obrigatório.');
+            valido = false;
+        }
+        // [VALIDAÇÃO 2] Idade maior que zero
+        if (!idade || Number(idade) <= 0) {
+            mostrarErro('idadePet', 'A idade deve ser maior que zero.');
+            valido = false;
+        }
+
+        if (!valido) return;
+
+        const pet = { nome, especie, dono, idade, porte, vacinado };
 
         if (editIndex !== null) {
-            pets[editIndex] = pet; // Atualiza pet existente
+            pets[editIndex] = pet;
             editIndex = null;
             document.querySelector('.btn-salvar').textContent = 'Cadastrar Pet';
         } else {
-            pets.push(pet); // Cria novo pet
+            pets.push(pet);
         }
 
-        e.target.reset(); // Limpa os campos
+        e.target.reset();
         atualizarTabela();
-        salvarPets(); // Salva no localStorage
+        salvarPets();
     }
 });
+
+function mostrarErro(id, mensagem) {
+    const campo = document.getElementById(id);
+    const erro = document.createElement('div');
+    erro.className = 'erro-campo';
+    erro.style.color = '#B00020';
+    erro.style.fontSize = '13px';
+    erro.style.marginTop = '2px';
+    erro.textContent = mensagem;
+    campo.parentNode.appendChild(erro);
+}
 
 // DELETE
 window.excluirPet = function(index) {
     if (confirm("Deseja realmente excluir este pet?")) {
         pets.splice(index, 1);
-        salvarPets(); // Salva no localStorage
+        salvarPets();
         atualizarTabela();
     }
 };
@@ -77,7 +109,19 @@ window.prepararEdicao = function(index) {
     document.getElementById('nomePet').value = pet.nome;
     document.getElementById('especiePet').value = pet.especie;
     document.getElementById('donoPet').value = pet.dono;
-    
+    document.getElementById('idadePet').value = pet.idade;
+    document.getElementById('portePet').value = pet.porte;
+    document.getElementById('vacinadoPet').checked = pet.vacinado;
     editIndex = index;
     document.querySelector('.btn-salvar').textContent = 'Salvar Alterações';
 };
+
+//Função do botão Limpar
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'btn-limpar') {
+        document.getElementById('form-pet').reset();
+        document.querySelectorAll('.erro-campo').forEach(el => el.remove());
+        editIndex = null;
+        document.querySelector('.btn-salvar').textContent = 'Cadastrar Pet';
+    }
+});
