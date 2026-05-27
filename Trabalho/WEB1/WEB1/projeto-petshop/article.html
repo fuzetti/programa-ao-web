@@ -93,31 +93,3 @@
 
     
     </section>
-    <script>
-        let pets = [];
-        let editIndex = null;
-        
-        document.getElementById('form-pet').addEventListener('submit', function(e) {
-            e.preventDefault();
-        
-            const pet = {
-                nome: document.getElementById('nomePet').value,
-                especie: document.getElementById('especiePet').value,
-                dono: document.getElementById('donoPet').value
-            };
-        
-            if (editIndex !== null) {
-                pets[editIndex] = pet;
-                editIndex = null;
-            } else {
-                pets.push(pet);
-            }
-        
-            // Salva array completo
-            localStorage.setItem('pets', JSON.stringify(pets));
-        
-            console.log('Pets salvos:', pets);
-        
-            this.reset();
-        });
-        </script>
