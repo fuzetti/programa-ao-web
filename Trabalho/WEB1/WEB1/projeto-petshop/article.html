@@ -1,10 +1,62 @@
 <section class="cadastro-pets">
     <h2>Gestão de Pets</h2>
+
     <form id="form-pet" class="formulario">
-        <input type="text" id="nomePet" placeholder="Nome do Pet" required>
-        <input type="text" id="especiePet" placeholder="Espécie (Ex: Cão, Gato)" required>
-        <input type="text" id="donoPet" placeholder="Nome do Dono" required>
-        <button type="submit" class="btn btn-salvar">Cadastrar Pet</button>
+        
+    
+    <div class="campo-form">
+        <input type="text" id="nomePet" required placeholder=" " autocomplete="off">
+        <label for="nomePet">Nome do Pet</label>
+    </div>
+
+    <div class="campo-form">
+        <select id="especiePet" required placeholder=" ">
+            <option value="" selected disabled hidden></option>
+            <option>Cachorro</option>
+            <option>Gato</option>
+            <option>Coelho</option>
+            <option>Pássaro</option>
+        </select>
+        <label for="especiePet">Espécie</label>
+    </div>
+
+    <div class="campo-form">
+        <input type="text" id="donoPet" required placeholder=" " autocomplete="off">
+        <label for="donoPet">Nome do Dono</label>
+    </div>
+
+    <div class="campo-form">
+        <input type="number" id="idadePet" min="0" required placeholder=" ">
+        <label for="idadePet">Idade</label>
+    </div>
+
+    <div class="campo-form">
+        <select id="portePet" required placeholder=" ">
+            <option value="" selected disabled hidden></option>
+            <option>Pequeno</option>
+            <option>Médio</option>
+            <option>Grande</option>
+        </select>
+        <label for="portePet">Porte</label>
+    </div>
+
+    <div class="checkbox-area">
+        <input type="checkbox" id="vacinadoPet">
+        <label for="vacinadoPet">Vacinado</label>
+    </div>
+
+    <div class="botoes-formulario">
+
+        <button type="submit" class="btn btn-salvar">
+            Salvar Pet
+        </button>
+
+        <button type="button" id="btn-limpar" class="btn btn-limpar">
+            Limpar
+        </button>
+
+    </div>
+
     </form>
 
     <div class="tabela-container">
@@ -14,10 +66,15 @@
                     <th>Nome</th>
                     <th>Espécie</th>
                     <th>Dono</th>
+                    <th>Idade</th>
+                    <th>Porte</th>
+                    <th>Vacinado</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody class="tabela-pets">
-                </tbody>
+                <!-- [MUDANÇA] Linhas preenchidas dinamicamente pelo JS -->
+            </tbody>
         </table>
     </div>
 </section>
