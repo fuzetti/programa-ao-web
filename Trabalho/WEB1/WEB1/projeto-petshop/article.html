@@ -10,7 +10,7 @@
     </div>
 
     <div class="campo-form">
-        <select id="especiePet" required placeholder=" ">
+        <select id="especiePet" required>
             <option value="" selected disabled hidden></option>
             <option>Cachorro</option>
             <option>Gato</option>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="campo-form">
-        <select id="portePet" required placeholder=" ">
+        <select id="portePet" required>
             <option value="" selected disabled hidden></option>
             <option>Pequeno</option>
             <option>Médio</option>
@@ -58,6 +58,23 @@
     </div>
 
     </form>
+
+    <div class="filtros-container">
+        <div class="campo-form">
+            <select id="filtroEspecie">
+                <option value="" selected>Todas as espécies</option>
+                <option>Cachorro</option>
+                <option>Gato</option>
+                <option>Coelho</option>
+                <option>Pássaro</option>
+            </select>
+            <label for="filtroEspecie">Filtrar por espécie</label>
+        </div>
+
+        <button type="button" id="btn-ordenar-nome" class="btn btn-editar">
+            Ordenar por Nome A-Z
+        </button>
+    </div>
 
     <div class="tabela-container">
         <table>
