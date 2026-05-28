@@ -1,6 +1,8 @@
 // js/script.js
 let pets = [];
 let editIndex = null;
+let currentSortAsc = true;
+let currentFilterSpecies = '';
 
 // Função para salvar no localStorage
 function salvarPets() {
@@ -20,7 +22,27 @@ window.atualizarTabela = function() {
     const tabelaBody = document.querySelector('.tabela-pets');
     if (!tabelaBody) return;
     tabelaBody.innerHTML = '';
-    pets.forEach((pet, index) => {
+    // Preserve original indices so actions map to the correct item
+    const withIndex = pets.map((p, idx) => ({ pet: p, origIndex: idx }));
+
+    const exibicaoPets = withIndex
+        .filter(item => !currentFilterSpecies || item.pet.especie === currentFilterSpecies)
+        .sort((a, b) => {
+            return currentSortAsc
+                ? a.pet.nome.localeCompare(b.pet.nome, 'pt-BR', { sensitivity: 'base' })
+                : b.pet.nome.localeCompare(a.pet.nome, 'pt-BR', { sensitivity: 'base' });
+        });
+
+    if (exibicaoPets.length === 0) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td colspan="7" style="text-align:center; padding: 20px;">Nenhum pet encontrado.</td>';
+        tabelaBody.appendChild(tr);
+        return;
+    }
+
+    exibicaoPets.forEach(item => {
+        const pet = item.pet;
+        const orig = item.origIndex;
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${pet.nome}</td>
@@ -30,8 +52,8 @@ window.atualizarTabela = function() {
             <td>${pet.porte}</td>
             <td>${pet.vacinado ? 'Sim' : 'Não'}</td>
             <td>
-                <button class="btn btn-editar" onclick="prepararEdicao(${index})">Editar</button>
-                <button class="btn btn-deletar" onclick="excluirPet(${index})">Excluir</button>
+                <button class="btn btn-editar" onclick="prepararEdicao(${orig})">Editar</button>
+                <button class="btn btn-deletar" onclick="excluirPet(${orig})">Excluir</button>
             </td>
         `;
         tabelaBody.appendChild(tr);
@@ -116,12 +138,30 @@ window.prepararEdicao = function(index) {
     document.querySelector('.btn-salvar').textContent = 'Salvar Alterações';
 };
 
-//Função do botão Limpar
+// Função de filtro por espécie
+document.addEventListener('change', function(e) {
+    if (e.target && e.target.id === 'filtroEspecie') {
+        currentFilterSpecies = e.target.value;
+        atualizarTabela();
+    }
+});
+
+// Função do botão Limpar e do botão de ordenar
 document.addEventListener('click', function(e) {
     if (e.target && e.target.id === 'btn-limpar') {
         document.getElementById('form-pet').reset();
         document.querySelectorAll('.erro-campo').forEach(el => el.remove());
         editIndex = null;
         document.querySelector('.btn-salvar').textContent = 'Cadastrar Pet';
+        currentFilterSpecies = '';
+        const filtro = document.getElementById('filtroEspecie');
+        if (filtro) filtro.value = '';
+        atualizarTabela();
+    }
+
+    if (e.target && e.target.id === 'btn-ordenar-nome') {
+        currentSortAsc = !currentSortAsc;
+        e.target.textContent = currentSortAsc ? 'Ordenar por Nome A-Z' : 'Ordenar por Nome Z-A';
+        atualizarTabela();
     }
 });
