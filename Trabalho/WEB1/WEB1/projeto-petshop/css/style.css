@@ -383,7 +383,7 @@ footer {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 0px;
+    margin-top: 20px;
     background: white;
     border-radius: 16px;
     overflow: hidden;
